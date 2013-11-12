@@ -12,16 +12,9 @@ DB = Sequel.connect('sqlite://log.db')
 M = DB[:messages]
 =end
 
-if !DB.table_exists?(:messages)
-  DB.create_table :messages do
-    primary_key :id
-    String :channel
-    String :nick
-    String :message
-    DateTime :created
-    Boolean :normal
-  end
-end
+Sequel.extension :migration
+Sequel::Migrator.check_current(DB, 'migrations')
+
 
 class Message < Sequel::Model
 end
