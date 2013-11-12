@@ -1,5 +1,5 @@
-
 require 'cinch'
+
 require 'sequel'
 require 'logger'
 
@@ -52,6 +52,14 @@ bot = Cinch::Bot.new do
 
   on :part do |m|
     register_part_join(m)
+  end
+
+  on :message, "+bot hello" do |m|
+    m.reply("Hello")
+  end
+
+  on :message, "+bot privhello" do |m|
+    m.user.send("Hello, privately")
   end
 
   on :message do |m|
