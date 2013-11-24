@@ -1,0 +1,8 @@
+
+db = mysql://user:password@server/db
+
+server = server.com
+
+nick = loathing_bot
+
+channels = #bots

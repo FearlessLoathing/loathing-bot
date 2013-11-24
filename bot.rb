@@ -1,9 +1,12 @@
-require 'cinch'
 
+require 'cinch'
 require 'sequel'
 require 'logger'
 
-DB = Sequel.connect('sqlite://log.db')
+require './config/config.rb'
+puts CONFIG.inspect
+
+DB = Sequel.connect(CONFIG["db"])
 
 =begin
 require 'sequel'
@@ -22,9 +25,9 @@ end
 
 bot = Cinch::Bot.new do
   configure do |c|
-    c.server = "aamis.tk"
-    c.channels = ["#bots"]
-    c.nick = "loathing_bot"
+    c.server = CONFIG["server"]
+    c.channels = CONFIG["channels"].split(",")
+    c.nick = CONFIG["nick"]
   end
 
   helpers do
